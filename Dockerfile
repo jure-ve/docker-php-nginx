@@ -33,7 +33,6 @@ RUN apk --no-cache add \
 
 # Create symlink so programs depending on `php` still function
 RUN ln -s /usr/bin/php8 /usr/bin/php
->>>>>>> 2102c582200c1d8d7e3ffbe367dba1776cc9164a
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
