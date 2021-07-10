@@ -3,7 +3,6 @@ LABEL Maintainer="Tim de Pater <code@trafex.nl>"
 LABEL Description="Lightweight container with Nginx 1.20 & PHP 8.0 based on Alpine Linux."
 
 # Install packages and remove default server definition
-<<<<<<< HEAD
 RUN apk --no-cache add php8 php8-fpm php8-opcache php8-mysqli php8-json php8-openssl php8-curl \
     php8-zlib php8-xml php8-phar php8-intl php8-dom php8-xmlreader php8-ctype php8-session \
     php8-mbstring php8-gd php7-simplexml php7-pecl-memcached nginx supervisor curl && \
