@@ -1,7 +1,7 @@
-ARG ALPINE_VERSION=3.19
+ARG ALPINE_VERSION=3.20
 FROM alpine:${ALPINE_VERSION}
 LABEL Maintainer="Tim de Pater <code@trafex.nl>"
-LABEL Description="Lightweight container with Nginx 1.24 & PHP 8.3 based on Alpine Linux."
+LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.3 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/html
 
@@ -44,9 +44,6 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
-
-# Create symlink for php
-RUN ln -s /usr/bin/php83 /usr/bin/php
 
 # Switch to use a non-root user from here on
 USER nobody
