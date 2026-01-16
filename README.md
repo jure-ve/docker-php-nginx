@@ -1,5 +1,5 @@
-# Docker PHP-FPM 8.4 & Nginx 1.26 on Alpine Linux
-Example PHP-FPM 8.4 & Nginx 1.26 container image for Docker, built on [Alpine Linux](https://www.alpinelinux.org/).
+# Docker PHP-FPM 8.4 & Nginx 1.28 on Alpine Linux
+Example PHP-FPM 8.4 & Nginx 1.28 container image for Docker, built on [Alpine Linux](https://www.alpinelinux.org/).
 
 Repository: https://github.com/TrafeX/docker-php-nginx
 
@@ -15,7 +15,7 @@ Repository: https://github.com/TrafeX/docker-php-nginx
 * Follows the KISS principle (Keep It Simple, Stupid) to make it easy to understand and adjust the image to your needs
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/trafex/php-nginx.svg)](https://hub.docker.com/r/trafex/php-nginx/)
-![nginx 1.26](https://img.shields.io/badge/nginx-1.26-brightgreen.svg)
+![nginx 1.28](https://img.shields.io/badge/nginx-1.28-brightgreen.svg)
 ![php 8.4](https://img.shields.io/badge/php-8.4-brightgreen.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -40,8 +40,12 @@ Or mount your own code to be served by PHP-FPM & Nginx
     docker run -p 80:8080 -v ~/my-codebase:/var/www/html trafex/php-nginx
 
 ## Versioning
-Major or minor changes are always published as a [release](https://github.com/TrafeX/docker-php-nginx/releases) with correspondending changelogs.
-The `latest` tag is automatically updated weekly to include the latests patches from Alpine Linux.
+This image follows semantic versioning;
+
+* `latest` - Latest stable release (automatically updated weekly with the latest patches from Alpine Linux)
+* `<major>.<minor>.<patch>` - Specific immutable version (e.g., `3.9.1`, `3.9.2`)
+* `<major>.<minor>` - Latest patch version for a minor release (e.g., `3.9` → `3.9.2`)
+* `<major>` - Latest minor and patch version (e.g., `3` → `3.9.2`)
 
 ## Configuration
 In [config/](config/) you'll find the default configuration files for Nginx, PHP and PHP-FPM.

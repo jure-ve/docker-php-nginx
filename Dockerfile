@@ -1,7 +1,22 @@
-ARG ALPINE_VERSION=3.21
-FROM alpine:${ALPINE_VERSION}
-LABEL Maintainer="Tim de Pater <code@trafex.nl>"
-LABEL Description="Lightweight container with Nginx 1.26 & PHP 8.4 based on Alpine Linux."
+FROM alpine:3.23
+
+# Build metadata arguments
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
+# OCI annotations
+LABEL org.opencontainers.image.created="${BUILD_DATE}"
+LABEL org.opencontainers.image.authors="Tim de Pater <code@trafex.nl>"
+LABEL org.opencontainers.image.url="https://github.com/TrafeX/docker-php-nginx"
+LABEL org.opencontainers.image.documentation="https://github.com/TrafeX/docker-php-nginx"
+LABEL org.opencontainers.image.source="https://github.com/TrafeX/docker-php-nginx"
+LABEL org.opencontainers.image.version="${VERSION}"
+LABEL org.opencontainers.image.revision="${VCS_REF}"
+LABEL org.opencontainers.image.vendor="TrafeX"
+LABEL org.opencontainers.image.title="PHP-FPM 8.4 & Nginx on Alpine Linux"
+LABEL org.opencontainers.image.description="Lightweight container with Nginx 1.28 & PHP 8.4 based on Alpine Linux."
+
 # Setup document root
 WORKDIR /var/www/html
 
@@ -29,15 +44,13 @@ RUN apk add --no-cache \
   php84-xmlwriter \
   supervisor
 
-RUN ln -s /usr/bin/php84 /usr/bin/php
-
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
 # Configure nginx - default server
 COPY config/conf.d /etc/nginx/conf.d/
 
 # Configure PHP-FPM
-ENV PHP_INI_DIR /etc/php84
+ENV PHP_INI_DIR=/etc/php84
 COPY config/fpm-pool.conf ${PHP_INI_DIR}/php-fpm.d/www.conf
 COPY config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
 
