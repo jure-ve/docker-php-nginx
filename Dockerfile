@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.24
 
 # Build metadata arguments
 ARG BUILD_DATE
@@ -42,9 +42,6 @@ RUN apk add --no-cache \
   php85-xmlreader \
   php85-xmlwriter \
   supervisor
-
-# Create alias to php
-RUN ln -s /usr/bin/php85 /usr/bin/php
 
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
